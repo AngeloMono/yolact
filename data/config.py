@@ -172,7 +172,18 @@ pascal_sbd_dataset = dataset_base.copy({
     'class_names': PASCAL_CLASSES,
 })
 
+cilia_dataset = dataset_base.copy({
+    'name': 'Cilia',
 
+    'train_images': './Dataset/train img/',
+    'train_info': './Dataset/coco_annotations/train_coco.json',
+
+    'valid_images': './Dataset/test img/',
+    'valid_info': './Dataset/coco_annotations/validation_coco.json',
+
+    'class_names': ('cilia'),
+    'label_map': {1: 1}
+})
 
 
 
@@ -765,6 +776,16 @@ yolact_resnet50_pascal_config = yolact_resnet50_config.copy({
         'pred_scales': [[32], [64], [128], [256], [512]],
         'use_square_anchors': False,
     })
+})
+
+yolact_resnet50_cilia_config = yolact_resnet50_config.copy({
+    'name': 'yolact_resnet50_cilia',
+    # Dataset stuff
+    'dataset': cilia_dataset,
+    'num_classes': len(cilia_dataset.class_names) + 1,
+
+    # Image Size
+    'max_size': 512,
 })
 
 # ----------------------- YOLACT++ CONFIGS ----------------------- #
